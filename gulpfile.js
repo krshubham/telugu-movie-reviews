@@ -20,8 +20,20 @@ gulp.task('babelify', () => {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('build', () => {
+    gulp.src('src/**/*.js')
+    .pipe(sourcemaps.init())
+    .on('error', logError)
+    .pipe(babel({
+        presets: ["env"]
+    }))
+    .on('error', logError)
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist'));
+})
+
 gulp.task('babel:watch', () => {
     gulp.watch('src/**/*.js',['babelify']);
 });
 
-gulp.task('default',['babel:watch']);
+gulp.task('default',['build','babel:watch']);

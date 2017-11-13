@@ -1,4 +1,23 @@
 {
+  "name": "telugu-movie-reviews",
+  "description": "A simple web scraper that scrapes movie reviews for further processing. Meant for telugu movies.",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "gulp build && node dist/main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krshubham/telugu-movie-reviews.git"
+  },
+  "author": "Kumar Shubham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krshubham/telugu-movie-reviews/issues"
+  },
+  "homepage": "https://github.com/krshubham/telugu-movie-reviews#readme",
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
