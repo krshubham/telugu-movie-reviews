@@ -1,6 +1,11 @@
+import {join} from 'path';
+
 const points = {
     'plus': 'Plus Points:-',
-    'minus': 'Minus Points:-'
+    'minus': 'Minus Points:-',
 };
 
-export {points};
+const fileDir = join(__dirname,'../../data/');
+console.log(fileDir);
+
+export {points, fileDir};

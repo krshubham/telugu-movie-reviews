@@ -1,6 +1,8 @@
 import cheerio from 'cheerio';
 import request from 'request-promise';
-import { points } from '../enums/constants';
+import { points, fileDir} from '../enums/constants';
+import { join } from "path";
+import fs from 'fs';
 
 function cl(str){
     return cheerio.load(str);
@@ -14,6 +16,8 @@ function extractPositives(htmlString){
     
 }
 
+
+let cnt = 0;
 /**
 * Extracts the negative points about the movie in the given page
 * @param {String} htmlString 
@@ -21,17 +25,17 @@ function extractPositives(htmlString){
 function extractNegatives(htmlString){
     //TODO: Work on this part to make sure that plus points are scraped properly
     let $ = cl(htmlString);
-    console.log($('div.post-content p strong').length);
-    // .each((idx,element) => {
-    //     // console.log($(element).text());
-    //     // if($(element).text() == points.minus){
-    //     //     console.log($(element).parent().html());
-    //     // }
-    // });
-}
-let cnt = 0;
-function extractText(reviewUrl){
+    fs.writeFile(join(fileDir,`rev${cnt}.txt`),$('div.contentheading').text().trim(), (err) => {
+        if (err) throw err;
+        console.log('The file has been saved! by name',`rev${cnt}.txt`);
+    });
+    fs.appendFile(join(fileDir,`rev${cnt}.txt`),$('div.post-content').text().trim(), (err) => {
+        if (err) throw err;
+        console.log('The file has been saved! by name',`rev${cnt}.txt`);
+    });
     cnt++;
+}
+function extractText(reviewUrl){
     request(reviewUrl)
     .then((htmlString) => {
         // extractPositives(htmlString);
